@@ -8,7 +8,7 @@
  */
 int interactive(info_t *info_struct)
 {
-	return (isatty(STDIN_FILENO) && info->readfd <= 2);
+	return (isatty(STDIN_FILENO) && info_struct->readfd <= 2);
 }
 
 /**
@@ -50,16 +50,16 @@ int _atoi(char *str)
 	int i, sign = 1, flag = 0, output;
 	unsigned int result = 0;
 
-	for (i = 0;  s[i] != '\0' && flag != 2; i++)
+	for (i = 0;  str[i] != '\0' && flag != 2; i++)
 	{
-		if (s[i] == '-')
+		if (str[i] == '-')
 			sign *= -1;
 
-		if (s[i] >= '0' && s[i] <= '9')
+		if (str[i] >= '0' && str[i] <= '9')
 		{
 			flag = 1;
 			result *= 10;
-			result += (s[i] - '0');
+			result += (str[i] - '0');
 		}
 		else if (flag == 1)
 			flag = 2;

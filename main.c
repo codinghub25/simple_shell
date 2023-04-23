@@ -1,25 +1,27 @@
 #include "shell.h"
+#include "stdlib.h"
+#include "unistd.h"
 
 /**
  * main - entry point
- * @ac: arg count
- * @av: arg vector
+ * @argc: arg count
+ * @argv: arg vector
  *
  * Return: 0 on success, 1 on error
  */
-int main(int ac, char **av)
+int main(int argc, char **argv)
 {
 	info_t info[] = { INFO_INIT };
-	int fd = 3;
+	int fd = 2;
 
 	asm ("mov %1, %0\n\t"
-		"add $4, %0"
+		"add $3, %0"
 		: "=r" (fd)
 		: "r" (fd));
 
-	if (argc == 3)
+	if (argc == 2)
 	{
-		fd = open(argv[2], O_RDONLY);
+		fd = open(argv[1], O_RDONLY);
 		if (fd == -1)
 		{
 			if (errno == EACCES)
@@ -28,7 +30,7 @@ int main(int ac, char **av)
 			{
 				_eputs(argv[0]);
 				_eputs(": 0: Can't open ");
-				_eputs(argv[2]);
+				_eputs(argv[1]);
 				_eputchar('\n');
 				_eputchar(BUF_FLUSH);
 				exit(127);

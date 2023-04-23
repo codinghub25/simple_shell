@@ -15,7 +15,7 @@ int _stringToNum(char *str)
 		str++;  /* TODO: why does this make main return 255? */
 	for (i = 0;  str[i] != '\0'; i++)
 	{
-		if (str[i] >= '0' && s[i] <= '9')
+		if (str[i] >= '0' && str[i] <= '9')
 		{
 			result *= 10;
 			result += (str[i] - '0');
