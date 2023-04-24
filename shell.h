@@ -118,9 +118,9 @@ void find_cmd(info_t *);
 void fork_cmd(info_t *);
 
 /* path.c */
-int is_cmd(info_t *, char *);
-char *dup_chars(char *, int, int);
-char *find_path(info_t *, char *, char *);
+int is_executable(info_t *, char *);
+char *copy_chars(char *, int, int);
+char *find_cmd_path(info_t *, char *, char *);
 
 /* loophsh.c */
 int loophsh(char **);
@@ -158,7 +158,7 @@ void ffree(char **);
 void *_realloc(void *, unsigned int, unsigned int);
 
 /* memory_functions1.c */
-int bfree(void **);
+int myfree(void **);
 
 /* more_functions.c */
 int interactive(info_t *);
@@ -167,8 +167,8 @@ int _isalpha(int);
 int _atoi(char *);
 
 /* more_functions1.c */
-int _erratoi(char *);
-void print_error(info_t *, char *);
+int _stringToNum(char *);
+void print_errmsg(info_t *, char *);
 int print_d(int, int);
 char *convert_number(long int, int, int);
 void remove_comments(char *);
@@ -192,14 +192,14 @@ void clear_info(info_t *);
 void set_info(info_t *, char **);
 void free_info(info_t *, int);
 
-/* env.c module */
+/* envs.c module */
 char *_getenv(info_t *, const char *);
 int _myenv(info_t *);
 int _mysetenv(info_t *);
 int _myunsetenv(info_t *);
 int populate_env_list(info_t *);
 
-/* env1.c module */
+/* envs1.c module */
 char **get_environ(info_t *);
 int _unsetenv(info_t *, char *);
 int _setenv(info_t *, char *, char *);
