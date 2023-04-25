@@ -6,10 +6,10 @@
  */
 void clear_info(info_t *info)
 {
-	info->file = NULL;
-	info->args = NULL;
-	info->dir = NULL;
-	info->num_args = 0;
+	info->arg = NULL;
+	info->argv = NULL;
+	info->path = NULL;
+	info->argc = 0;
 }
 
 /**
@@ -21,23 +21,23 @@ void set_info(info_t *info, char **av)
 {
 	int i = 0;
 
-	info->prog_name = av[0];
-	if (info->file)
+	info->fname = av[0];
+	if (info->arg)
 	{
-		info->args = strtow(info->arg, " \t");
-		if (!info->args)
+		info->argv = strtow(info->arg, " \t");
+		if (!info->argv)
 		{
 
-			info->args = malloc(sizeof(char *) * 2);
-			if (info->args)
+			info->argv = malloc(sizeof(char *) * 2);
+			if (info->argv)
 			{
-				info->args[0] = _strdup(info->file);
-				info->args[1] = NULL;
+				info->argv[0] = _strdup(info->arg);
+				info->argv[1] = NULL;
 			}
 		}
-		for (i = 0; info->argv && info->args[i]; i++)
+		for (i = 0; info->argv && info->argv[i]; i++)
 			;
-		info->num_args = i;
+		info->argc = i;
 
 		replace_alias(info);
 		replace_vars(info);
@@ -51,24 +51,24 @@ void set_info(info_t *info, char **av)
  */
 void free_info(info_t *info, int all)
 {
-	ffree(info->args);
-	info->args = NULL;
-	info->dir = NULL;
+	ffree(info->argv);
+	info->argv = NULL;
+	info->path = NULL;
 	if (all)
 	{
-		if (!info->command_buffer)
-			free(info->file);
-		if (info->env_var)
-			free_list(&(info->env_var));
-		if (info->history_list)
-			free_list(&(info->history_list));
-		if (info->alias_list)
-			free_list(&(info->alias_list));
-		ffree(info->environment);
-			info->environment = NULL;
-		bfree((void **)info->command_buffer);
-		if (info->read_file_descriptor > 2)
-			close(info->read_file_descriptor);
+		if (!info->cmd_buf)
+			free(info->arg);
+		if (info->env)
+			free_list(&(info->env));
+		if (info->history)
+			free_list(&(info->history));
+		if (info->alias)
+			free_list(&(info->alias));
+		ffree(info->environ);
+			info->environ = NULL;
+		bfree((void **)info->cmd_buf);
+		if (info->readfd > 2)
+			close(info->readfd);
 		_putchar(BUF_FLUSH);
 	}
 }
