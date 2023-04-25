@@ -182,7 +182,7 @@ int _myhelp(info_t *);
 int _myhistory(info_t *);
 int _myalias(info_t *);
 
-/* getline.c module */
+/* getlines.c module */
 ssize_t get_input(info_t *);
 int _getline(info_t *, char **, size_t *);
 void sigintHandler(int);
@@ -205,11 +205,11 @@ int _unsetenv(info_t *, char *);
 int _setenv(info_t *, char *, char *);
 
 /* file_io_functions.c */
-char *get_history_file(info_t *info);
-int write_history(info_t *info);
-int read_history(info_t *info);
-int build_history_list(info_t *info, char *buf, int linecount);
-int renumber_history(info_t *info);
+char *my_get_history_file(info_t *info);
+int my_write_history(info_t *info);
+int my_read_history(info_t *info);
+int my_build_history_list(info_t *info, char *buf, int linecount);
+int my_renumber_history(info_t *info);
 
 /* liststr.c module */
 list_t *add_node(list_t **, const char *, int);
