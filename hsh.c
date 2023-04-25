@@ -30,7 +30,7 @@ int hsh(info_t *info, char **av)
 			_putchar('\n');
 		free_info(info, 0);
 	}
-	write_history(info);
+	my_write_history(info);
 	free_info(info, 1);
 	if (!interactive(info) && info->status)
 		exit(info->status);
@@ -109,7 +109,7 @@ void find_cmd(info_t *info)
 	else
 	{
 		if ((interactive(info) || _getenv(info, "PATH=")
-			|| info->argv[0][0] == '/') && find_cmd(info, info->argv[0]))
+			|| info->argv[0][0] == '/') && is_cmd(info, info->argv[0]))
 			fork_cmd(info);
 		else if (*(info->arg) != '\n')
 		{
