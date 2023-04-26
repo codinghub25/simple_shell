@@ -47,6 +47,8 @@ char *dup_chars(char *pathstr, int start, int stop)
  * @info: the info struct
  * @pathstr: the PATH string
  * @cmd: the cmd to find
+ * @starts_with: 
+ * @strcat: 
  *
  * Return: full path of cmd if found or NULL
  */
