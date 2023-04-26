@@ -113,9 +113,8 @@ typedef struct builtin
 
 /* hsh.c */
 int hsh(info_t *, char **);
-int is_cmd(info_t *info, char *cmd);
+int is_cmd(info_t *info);
 int find_builtin(info_t *);
-void find_cmd(info_t *);
 void fork_cmd(info_t *);
 
 /* path.c */
