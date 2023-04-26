@@ -113,14 +113,14 @@ typedef struct builtin
 
 /* hsh.c */
 int hsh(info_t *, char **);
-int is_cmd(info_t *info);
 int find_builtin(info_t *);
+void find_cmd(info_t *);
 void fork_cmd(info_t *);
 
 /* path.c */
-int is_executable(info_t *, char *);
-char *copy_chars(char *, int, int);
-char *find_cmd_path(info_t *, char *, char *);
+int is_cmd(info_t *, char *);
+char *dup_chars(char *, int, int);
+char *find_path(info_t *, char *, char *);
 
 /* loophsh.c */
 int loophsh(char **);
@@ -137,18 +137,18 @@ int _strcmp(char *, char *);
 char *starts_with(const char *, const char *);
 char *_strcat(char *, char *);
 
-/* string_functions1.c */
+/* string_functions2.c */
 char *_strcpy(char *, char *);
 char *_strdup(const char *);
 void _puts(char *);
 int _putchar(char);
 
-/* string_functions2.c */
+/* string_functions3.c */
 char *_strncpy(char *, char *, int);
 char *_strncat(char *, char *, int);
 char *_strchr(char *, char);
 
-/* string_functions3.c */
+/* string_functions4.c */
 char **strtow(char *, char *);
 char **strtow2(char *, char);
 
@@ -157,8 +157,8 @@ char *_memset(char *, char, unsigned int);
 void ffree(char **);
 void *_realloc(void *, unsigned int, unsigned int);
 
-/* memory_functions1.c */
-int myfree(void **);
+/* memory_functions2.c */
+int bfree(void **);
 
 /* more_functions.c */
 int interactive(info_t *);
@@ -166,23 +166,23 @@ int is_delim(char, char *);
 int _isalpha(int);
 int _atoi(char *);
 
-/* more_functions1.c */
-int _stringToNum(char *);
-void print_errmsg(info_t *, char *);
+/* more_functions2.c */
+int _erratoi(char *);
+void print_error(info_t *, char *);
 int print_d(int, int);
 char *convert_number(long int, int, int);
 void remove_comments(char *);
 
-/* builtins.c */
+/* builtin_emulators.c */
 int _myexit(info_t *);
 int _mycd(info_t *);
 int _myhelp(info_t *);
 
-/* builtins1.c */
+/* builtin_emulators2.c */
 int _myhistory(info_t *);
 int _myalias(info_t *);
 
-/* getlines.c module */
+/* getline.c module */
 ssize_t get_input(info_t *);
 int _getline(info_t *, char **, size_t *);
 void sigintHandler(int);
@@ -192,24 +192,24 @@ void clear_info(info_t *);
 void set_info(info_t *, char **);
 void free_info(info_t *, int);
 
-/* envs.c module */
+/* env.c module */
 char *_getenv(info_t *, const char *);
 int _myenv(info_t *);
 int _mysetenv(info_t *);
 int _myunsetenv(info_t *);
 int populate_env_list(info_t *);
 
-/* envs1.c module */
+/* env2.c module */
 char **get_environ(info_t *);
 int _unsetenv(info_t *, char *);
 int _setenv(info_t *, char *, char *);
 
 /* file_io_functions.c */
-char *my_get_history_file(info_t *info);
-int my_write_history(info_t *info);
-int my_read_history(info_t *info);
-int my_build_history_list(info_t *info, char *buf, int linecount);
-int my_renumber_history(info_t *info);
+char *get_history_file(info_t *info);
+int write_history(info_t *info);
+int read_history(info_t *info);
+int build_history_list(info_t *info, char *buf, int linecount);
+int renumber_history(info_t *info);
 
 /* liststr.c module */
 list_t *add_node(list_t **, const char *, int);
@@ -218,7 +218,7 @@ size_t print_list_str(const list_t *);
 int delete_node_at_index(list_t **, unsigned int);
 void free_list(list_t **);
 
-/* liststr1.c module */
+/* liststr2.c module */
 size_t list_len(const list_t *);
 char **list_to_strings(list_t *);
 size_t print_list(const list_t *);
