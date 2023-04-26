@@ -118,9 +118,9 @@ void find_cmd(info_t *);
 void fork_cmd(info_t *);
 
 /* path.c */
-int is_executable(info_t *, char *);
-char *copy_chars(char *, int, int);
-char *find_cmd_path(info_t *, char *, char *);
+int is_cmd(info_t *, char *);
+char *dup_chars(char *, int, int);
+char *find_path(info_t *, char *, char *);
 
 /* loophsh.c */
 int loophsh(char **);
@@ -158,7 +158,7 @@ void ffree(char **);
 void *_realloc(void *, unsigned int, unsigned int);
 
 /* memory_functions1.c */
-int myfree(void **);
+int bfree(void **);
 
 /* more_functions.c */
 int interactive(info_t *);
@@ -167,18 +167,18 @@ int _isalpha(int);
 int _atoi(char *);
 
 /* more_functions1.c */
-int _stringToNum(char *);
-void print_errmsg(info_t *, char *);
+int _erratoi(char *);
+void print_error(info_t *, char *);
 int print_d(int, int);
 char *convert_number(long int, int, int);
 void remove_comments(char *);
 
-/* builtins.c */
+/* builtin_emulators.c */
 int _myexit(info_t *);
 int _mycd(info_t *);
 int _myhelp(info_t *);
 
-/* builtins1.c */
+/* builtin1_emulators2.c */
 int _myhistory(info_t *);
 int _myalias(info_t *);
 
@@ -192,14 +192,14 @@ void clear_info(info_t *);
 void set_info(info_t *, char **);
 void free_info(info_t *, int);
 
-/* envs.c module */
+/* env.c module */
 char *_getenv(info_t *, const char *);
 int _myenv(info_t *);
 int _mysetenv(info_t *);
 int _myunsetenv(info_t *);
 int populate_env_list(info_t *);
 
-/* envs1.c module */
+/* env1.c module */
 char **get_environ(info_t *);
 int _unsetenv(info_t *, char *);
 int _setenv(info_t *, char *, char *);

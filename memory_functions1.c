@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * myfree - frees a pointer and NULLs the address
+ * bfree - frees a pointer and NULLs the address
  * @ptr: address of the pointer to free
  *
  * Return: 1 if freed, otherwise 0.
  */
-int myfree(void **ptr)
+int bfree(void **ptr)
 {
 	if (ptr && *ptr)
 	{
