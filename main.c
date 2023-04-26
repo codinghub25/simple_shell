@@ -31,8 +31,8 @@ int main(int argc, char **argv)
 				_eputs(argv[0]);
 				_eputs(": 0: Can't open ");
 				_eputs(argv[1]);
-				_eputchar('\n');
-				_eputchar(BUF_FLUSH);
+				_putchar('\n');
+				_putchar(BUF_FLUSH);
 				exit(127);
 			}
 			return (EXIT_FAILURE);
