@@ -2,20 +2,20 @@
 
 /**
  * _strlen - returns the length of a string
- * @str: the string whose length to check
+ * @s: the string whose length to check
  *
  * Return: integer length of string
  */
-int _strlen(char *str)
+int _strlen(char *s)
 {
-	int len = 0;
+	int i = 0;
 
-	if (!str)
+	if (!s)
 		return (0);
 
-	while (*str++)
-		len++;
-	return (len);
+	while (*s++)
+		i++;
+	return (i);
 }
 
 /**
@@ -42,17 +42,17 @@ int _strcmp(char *s1, char *s2)
 
 /**
  * starts_with - checks if needle starts with haystack
- * @str: string to search
- * @prefix: the prefix to find
+ * @haystack: string to search
+ * @needle: the substring to find
  *
- * Return: address of next char of str or NULL
+ * Return: address of next char of haystack or NULL
  */
-char *starts_with(const char *str, const char *prefix)
+char *starts_with(const char *haystack, const char *needle)
 {
-	while (*prefix)
-		if (*prefix++ != *str++)
+	while (*needle)
+		if (*needle++ != *haystack++)
 			return (NULL);
-	return ((char *)str);
+	return ((char *)haystack);
 }
 
 /**
